@@ -14,10 +14,14 @@ $bdd = null;
 try {
   $bdd = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password);
 } catch (PDOException $e) {
-  
+  echo "Erreur!: " . $e->getMessage() . "<br/>";
   die();
 }
 
+$id=(isset($_GET['idfb']))?(int) $_GET['idfb']:0;
+$imdp=(isset($_GET['mdp']))?(int) $_GET['mdp']:0;
+$mail=(isset($_GET['mailfb']))?$_GET['mailfb']:'';
+$prenom=(isset($_GET['prenom']))?$_GET['prenom']:'';
 
 function utilisateur_est_connecte() {
  
