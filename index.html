@@ -1,4 +1,43 @@
-<!doctype html>
+<?php 
+session_start();
+$host_name = 'db766961535.hosting-data.io';
+$database = 'db766961535';
+$user_name = 'dbo766961535';
+$password = 'Azerty234!';
+
+
+
+
+
+
+$bdd = null;
+try {
+  $bdd = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password);
+} catch (PDOException $e) {
+  echo "Erreur!: " . $e->getMessage() . "<br/>";
+  die();
+}
+//Attribution des variables de session
+$id=(isset($_GET['idfb']))?(int) $_GET['idfb']:0;
+$imdp=(isset($_GET['mdp']))?(int) $_GET['mdp']:0;
+$mail=(isset($_GET['mailfb']))?$_GET['mailfb']:'';
+$prenom=(isset($_GET['prenom']))?$_GET['prenom']:'';
+
+//On inclue les 2 pages restantes
+include("membres.php");
+
+        $nbArticles=count($_SESSION['panier']['libelleProduit']);
+
+
+function utilisateur_est_connecte() {
+ 
+	return !empty($_SESSION['id']);
+}
+
+
+    
+
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
